@@ -4,19 +4,18 @@ import {
   COUNT_CART_TOTALS,
   REMOVE_CART_ITEM,
   TOGGLE_CART_ITEM_AMOUNT,
-} from "../actions";
+} from '../actions';
 
 const cart_reducer = (state, action) => {
   // Add to cart
   if (action.type === ADD_TO_CART) {
-    const { id, color, amount, product } = action.payload;
-    const tempItem = state.cart.find((i) => i.id === id + color); //tìm xem có trong cart chưa với id là id+color được tạo ở dưới nếu không tìm thấy item trong cart.
+    const { id, amount, product } = action.payload;
+    const tempItem = state.cart.find((i) => i.id === id);
     if (tempItem) {
       // nếu có thì kiểm tra tiếp stock
       const tempCart = state.cart.map((cartItem) => {
-        // check trùng không tại vì có thể trùng id nhưng không trùng color nên vẫn sai phải trùng id+color.
-        if (cartItem.id === id + color) {
-          let newAmount = cartItem.amount + amount; // kiểm tra stock
+        if (cartItem.id === id) {
+          let newAmount = cartItem.amount + amount;
           if (newAmount > cartItem.max) {
             newAmount = cartItem.max;
           }
@@ -27,11 +26,9 @@ const cart_reducer = (state, action) => {
       });
       return { ...state, cart: tempCart };
     } else {
-      // nếu không thì tạo mới
       const newItem = {
-        id: id + color,
+        id: id,
         name: product.name,
-        color,
         amount,
         image: product.images[0].url,
         price: product.price,
@@ -57,14 +54,14 @@ const cart_reducer = (state, action) => {
     const { id, value } = action.payload;
     const tempCart = state.cart.map((item) => {
       if (item.id === id) {
-        if (value === "inc") {
+        if (value === 'inc') {
           let newAmount = item.amount + 1;
           if (newAmount > item.max) {
             newAmount = item.max;
           }
           return { ...item, amount: newAmount };
         }
-        if (value === "dec") {
+        if (value === 'dec') {
           let newAmount = item.amount - 1;
           if (newAmount < 1) {
             newAmount = 1;
@@ -78,7 +75,6 @@ const cart_reducer = (state, action) => {
     return { ...state, cart: tempCart };
   }
 
-  // Count cart totals : cái con số ở giỏ hàng và cái total price ở cartTotal chưa hiểu lắm cái reducer này
   if (action.type === COUNT_CART_TOTALS) {
     const { total_items, total_amount } = state.cart.reduce(
       (total, cartItem) => {

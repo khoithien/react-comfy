@@ -17,7 +17,6 @@ const CartButtons = () => {
 
   return (
     <Wrapper className="cart-btn-wrapper">
-      {/* cái className này xài global tức nó có thể truy cập từ thằng cha ( Navbar ) */}
       <Link to="/cart" className="cart-btn" onClick={closeSidebar}>
         Cart
         <span className="cart-container">

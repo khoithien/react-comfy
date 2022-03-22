@@ -1,26 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { useParams, useHistory, Link } from "react-router-dom";
+import { useParams, Link } from 'react-router-dom';
 
-import { useProductsContext } from "../context/products_context";
+import { useProductsContext } from '../context/products_context';
 
-import { single_product_url as url } from "../utils/constants";
-import { formatPrice } from "../utils/helpers";
+import { single_product_url as url } from '../utils/constants';
+import { formatPrice } from '../utils/helpers';
 
-import {
-  Loading,
-  Error,
-  ProductImages,
-  AddToCart,
-  Stars,
-  PageHero,
-} from "../components";
+import { Loading, Error, ProductImages, AddToCart, Stars, PageHero } from '../components';
 
 const SingleProductPage = () => {
-  const { id } = useParams(); // truy cập cái param trên url
-  // const history = useHistory(); // optional
+  const { id } = useParams();
+
   const {
     single_product_loading: loading,
     single_product_error: error,
@@ -31,14 +24,6 @@ const SingleProductPage = () => {
   useEffect(() => {
     fetchSingleProduct(`${url}${id}`);
   }, [id]);
-  // optional : nếu muốn tự động quay về home ( useHistory này nôm na Redirect lát ở Auth0 làm.)
-  // useEffect(() => {
-  //   if (error) {
-  //     setTimeout(() => {
-  //       history.push("/");
-  //     }, 2000);
-  //   }
-  // });
 
   if (loading) {
     return <Loading />;
@@ -48,18 +33,8 @@ const SingleProductPage = () => {
   }
 
   // sau khi fetch xong có data rồi destructuring.
-  const {
-    name,
-    price,
-    description,
-    stock,
-    stars,
-    reviews,
-    id: sku,
-    company,
-    images,
-  } = product;  
-  
+  const { name, price, description, stock, stars, reviews, id: sku, company, images } = product;
+
   return (
     <Wrapper>
       <PageHero title={name} product />
@@ -76,7 +51,7 @@ const SingleProductPage = () => {
             <p className="desc">{description}</p>
             <p className="info">
               <span>Available</span>
-              {stock > 0 ? "In stock" : "out of stock"}
+              {stock > 0 ? 'In stock' : 'out of stock'}
             </p>
             <p className="info">
               <span>SKU : </span>

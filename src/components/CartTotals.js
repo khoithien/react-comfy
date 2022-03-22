@@ -6,7 +6,6 @@ import { useCartContext } from '../context/cart_context';
 import { useUserContext } from '../context/user_context';
 
 import { formatPrice } from '../utils/helpers';
-import CartButtons from './CartButtons';
 
 const CartTotals = () => {
   const { total_amount, shipping_fee } = useCartContext();

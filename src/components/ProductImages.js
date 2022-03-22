@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const ProductImages = ({ images = [{ url: "" }] }) => {
-  // console.log(images);  undefined
-  // ban đầu images là undefined tại axios take time nên gán default cho nó
+
   const [main, setMain] = useState(images[0]);
-  // console.log(main);
 
   return (
     <Wrapper>
@@ -17,9 +15,7 @@ const ProductImages = ({ images = [{ url: "" }] }) => {
               src={image.url}
               alt={image.filename}
               key={index}
-              // khi click sẽ thành hình chính (so sánh với cha nó)
               onClick={() => setMain(images[index])}
-              // kiểm tra đang nhấn hình nào.
               className={`${image.url === main.url ? "active" : null}`}
             />
           );

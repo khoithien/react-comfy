@@ -10,7 +10,6 @@ import { CartContent, PageHero } from "../components";
 const CartPage = () => {
   const { cart } = useCartContext();
   if (cart.length < 1) {
-    // nếu không có item nào trong cart.
     return (
       <Wrapper className="page-100">
         <div className="empty">
@@ -23,7 +22,6 @@ const CartPage = () => {
     );
   }
 
-    // nếu có item trong cart thì hiện CartContent
   return (
     <main>
       <PageHero title="cart" />

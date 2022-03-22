@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
 
 const Stars = ({ stars, reviews }) => {
-  // Cách Logic dynamic
   const tempStars = Array.from({ length: 5 }, (_, index) => {
     const number = index + 0.5;
     return (
@@ -18,8 +17,7 @@ const Stars = ({ stars, reviews }) => {
       </span>
     );
   });
-  /* Cách thủ công
-  tạo 5 span với cái đầu là 1 và 0.5 .Cái span 2 là 2 và 1.5 ... cái thứ 5 thì === 5 và >=4.5*/
+
   return (
     <Wrapper>
       <div className="stars">{tempStars}</div>

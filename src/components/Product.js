@@ -18,7 +18,6 @@ const Product = ({ image, name, price, id }) => {
       </div>
       <footer>
         <h5>{name}</h5>
-        {/* format number lại bên herlper.js*/}
         <p>{formatPrice(price)}</p>
       </footer>
     </Wrapper>

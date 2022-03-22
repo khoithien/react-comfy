@@ -1,18 +1,8 @@
-import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Navbar, Sidebar, Footer } from "./components";
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Navbar, Sidebar, Footer } from './components';
 
-import {
-  // import kiểu đại diện bởi index.js
-  Home,
-  SingleProduct,
-  Cart,
-  // Checkout,
-  Error,
-  About,
-  Products,
-  // PrivateRoute
-} from "./pages";
+import { Home, SingleProduct, Cart, Error, About, Products } from './pages';
 function App() {
   return (
     <Router>
@@ -34,12 +24,6 @@ function App() {
         <Route exact path="/products/:id">
           <SingleProduct />
         </Route>
-        {/* <Route exact path="/checkout">
-          <Checkout />
-        </Route> */}
-        {/* <PrivateRoute exact path="/checkout"> hơi khó hiểu 6.5/10 
-          <Checkout />
-        </PrivateRoute> */}
         <Route path="*">
           <Error />
         </Route>

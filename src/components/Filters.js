@@ -1,33 +1,21 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-import { useFilterContext } from "../context/filter_context";
+import { useFilterContext } from '../context/filter_context';
 
-import { getUniqueValues, formatPrice } from "../utils/helpers";
-
-// import { FaCheck } from "react-icons/fa";
+import { getUniqueValues, formatPrice } from '../utils/helpers';
 
 const Filters = () => {
   const {
-    filters: {
-      text,
-      category,
-      company,
-      // color,
-      price,
-      min_price,
-      max_price,
-      shipping,
-    },
+    filters: { text, category, company, price, min_price, max_price, shipping },
     all_products,
     updateFilters,
     clearFilters,
   } = useFilterContext();
 
   // filter left helper
-  const categories = getUniqueValues(all_products, "category");
-  const companies = getUniqueValues(all_products, "company");
-  // const colors = getUniqueValues(all_products, "colors");
+  const categories = getUniqueValues(all_products, 'category');
+  const companies = getUniqueValues(all_products, 'company');
 
   return (
     <Wrapper>
@@ -37,7 +25,7 @@ const Filters = () => {
           <div className="form-control">
             <input
               type="text"
-              name="text" // name cho updateFilter, phải giống như trong state.
+              name="text"
               placeholder="search"
               className="search-input"
               value={text}
@@ -50,15 +38,12 @@ const Filters = () => {
           <div className="form-control">
             <h5>category</h5>
             <div>
-               {/* map từ thằng unique trên */}
               {categories.map((cate, index) => {
                 return (
                   <button
                     key={index}
                     name="category"
-                    className={`${
-                      category === cate.toLowerCase() ? "active" : null
-                    }`}
+                    className={`${category === cate.toLowerCase() ? 'active' : null}`}
                     onClick={updateFilters}
                   >
                     {cate}
@@ -72,12 +57,7 @@ const Filters = () => {
           {/* companies */}
           <div className="form-control">
             <h5>company</h5>
-            <select
-              name="company"
-              value={company}
-              onChange={updateFilters}
-              className="company"
-            >
+            <select name="company" value={company} onChange={updateFilters} className="company">
               {companies.map((com, index) => {
                 return (
                   <option key={index} value={com}>
@@ -88,46 +68,6 @@ const Filters = () => {
             </select>
           </div>
           {/* end companies */}
-
-          {/*  colors */}
-          {/* <div className="form-control">
-            <h5>colors</h5>
-            <div className="colors">
-              {colors.map((c, index) => {
-                if (c === "all") {
-                  // nếu là màu đen thì hiện chữ all
-                  return (
-                    <button
-                      key={index}
-                      name="color"
-                      onClick={updateFilters}
-                      data-color="all" // dùng dataset.color để truy cập
-                      className={`${
-                        color === "all" ? "all-btn active" : "all-btn"
-                      }`}
-                    >
-                      all
-                    </button>
-                  );
-                }
-                return (
-                  <button
-                    key={index}
-                    name="color"
-                    style={{ background: c }}
-                    className={`${
-                      color === c ? "color-btn active" : "color-btn"
-                    }`}
-                    data-color={c}
-                    onClick={updateFilters}
-                  >
-                    {color === c ? <FaCheck /> : null}
-                  </button>
-                );
-              })}
-            </div>
-          </div> */}
-          {/* end of colors*/}
 
           {/* price */}
           <div className="form-control">
@@ -152,7 +92,7 @@ const Filters = () => {
               name="shipping"
               id="shipping"
               onChange={updateFilters}
-              checked={shipping}  // state shipping là false 
+              checked={shipping}
             />
           </div>
           {/* end of  shippping */}
@@ -160,7 +100,6 @@ const Filters = () => {
 
         {/* Clear Filter */}
         <button type="button" className="clear-btn" onClick={clearFilters}>
-          {/* {" "} */}
           clear filters
         </button>
       </div>
